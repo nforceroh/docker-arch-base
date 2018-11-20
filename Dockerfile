@@ -13,9 +13,11 @@ RUN \
  && rm -rf /usr/share/man/* /var/cache/pacman/pkg/* /var/lib/pacman/sync/* /etc/pacman.d/mirrorlist.pacnew \
  && cd /tmp \
  && echo "Fetching s6 overlay" \
- && curl -L -s ${OVERLAY_URL} | tar xvzf - -C / \
- && echo "Creating abc user" \\
- && sed -i 's/^CREATE_MAIL_SPOOL=yes/CREATE_MAIL_SPOOL=no/' /etc/default/useradd \
+ && curl -L -s ${OVERLAY_URL} -o /tmp/s6-overlay-amd64.tar.gz \
+ && echo "2 stage s6 extraction to NOT bork /bin" \
+ && tar xzf /tmp/s6-overlay-amd64.tar.gz -C / --exclude="./bin" \
+ && tar xzf /tmp/s6-overlay-amd64.tar.gz -C /usr ./bin \
+ && echo "Creating abc user" \
  && groupadd -g 3000 abc  \
  && useradd -u 3001 -g 3000 -d /config -m -s /bin/false abc \
  && mkdir -p /app /config /defaults \
