@@ -1,0 +1,29 @@
+#!/usr/bin/with-contenv bash
+
+PUID=${PUID:-3001}
+PGID=${PGID:-3000}
+
+/usr/sbin/groupmod -o -g ${PGID} abc
+/usr/sbin/usermod -o -u ${PUID} abc
+echo '
+-------------------------------------'
+echo "
+User uid:    $(id -u abc)
+User gid:    $(id -g abc)
+-------------------------------------
+"
+if [ ! -d /app ]; then
+	mkdir /app
+fi
+
+if [ ! -d /config ]; then
+        mkdir /config
+fi
+
+if [ ! -d /defaults ]; then
+        mkdir /defaults
+fi
+
+chown abc:abc /app
+chown abc:abc /config
+chown abc:abc /defaults
