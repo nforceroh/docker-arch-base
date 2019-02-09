@@ -9,7 +9,7 @@ ARG OVERLAY_URL="https://github.com/just-containers/s6-overlay/releases/download
 RUN \
  echo "Fetching the basics" \
  && pacman --noconfirm -Syu \
- && pacman --noconfirm -S wget nfs-utils tar \
+ && pacman --noconfirm -S wget nfs-utils tar grep \
  && rm -rf /usr/share/man/* /var/cache/pacman/pkg/* /var/lib/pacman/sync/* /etc/pacman.d/mirrorlist.pacnew \
  && cd /tmp \
  && echo "Fetching s6 overlay" \
