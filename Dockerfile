@@ -2,14 +2,14 @@ FROM archlinux/base:latest
 
 MAINTAINER Sylvain Martin (sylvain@nforcer.com)
 
-ARG OVERLAY_VER="v1.21.7.0"
+ARG OVERLAY_VER="v1.21.8.0"
 ARG OVERLAY_URL="https://github.com/just-containers/s6-overlay/releases/download/${OVERLAY_VER}/s6-overlay-amd64.tar.gz"
 
 # s6 overlay
 RUN \
  echo "Fetching the basics" \
  && pacman --noconfirm -Syu \
- && pacman --noconfirm -S wget nfs-utils \
+ && pacman --noconfirm -S wget nfs-utils tar \
  && rm -rf /usr/share/man/* /var/cache/pacman/pkg/* /var/lib/pacman/sync/* /etc/pacman.d/mirrorlist.pacnew \
  && cd /tmp \
  && echo "Fetching s6 overlay" \
