@@ -2,7 +2,7 @@ FROM archlinux/base:latest
 
 MAINTAINER Sylvain Martin (sylvain@nforcer.com)
 
-ARG OVERLAY_VER="v1.21.8.0"
+ARG OVERLAY_VER="v1.22.0.0"
 ARG OVERLAY_URL="https://github.com/just-containers/s6-overlay/releases/download/${OVERLAY_VER}/s6-overlay-amd64.tar.gz"
 
 # s6 overlay
